@@ -1,7 +1,7 @@
-from chat.viewsets import ChatRoomViewSet
+from chat.viewsets import ChatRoomViewSet,MessageViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(r'testing', ChatRoomViewSet, basename = 'testing')
 router.register(r'chatroom', ChatRoomViewSet, basename = 'chatroom')
+router.register(r'message', MessageViewSet, basename = 'message')
 urlpatterns = router.urls
