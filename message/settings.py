@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
+CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',  # for localhost (REACT Default)
     'http://192.168.0.50:3000',  # for network 
@@ -114,8 +116,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'verceldb',
         'USER': 'default',
-        'PASSWORD': 'NjVTxWOF4et5',
-        'HOST': 'ep-ancient-bird-a7cfx35f-pooler.ap-southeast-2.aws.neon.tech',
+        'PASSWORD': 'DcmZ3rSPTQ5M',
+        'HOST': 'ep-blue-voice-a4cy5248.us-east-1.aws.neon.tech',
         'PORT': '5432',
     }
 }
