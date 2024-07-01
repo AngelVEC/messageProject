@@ -114,10 +114,10 @@ WSGI_APPLICATION = 'message.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'verceldb',
+        'NAME': 'verceldb', 
         'USER': 'default',
-        'PASSWORD': 'DcmZ3rSPTQ5M',
-        'HOST': 'ep-blue-voice-a4cy5248.us-east-1.aws.neon.tech',
+        'PASSWORD': 'jUq02FATgBHR', 
+        'HOST': 'ep-weathered-grass-a47qehz5.us-east-1.aws.neon.tech',
         'PORT': '5432',
     }
 }
