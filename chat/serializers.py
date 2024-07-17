@@ -8,7 +8,7 @@ from rest_framework.response import Response
 class ChatRoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatRoom
-        fields = ['id','name']
+        fields = ['id','name', 'created_by', 'members']
         #if want to show all use '__all__'
 
 class MessageSerializer(serializers.ModelSerializer):
