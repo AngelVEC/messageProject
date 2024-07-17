@@ -28,3 +28,8 @@ class userRegisterSerializer(serializers.ModelSerializer):
         user_obj = User.objects.create_user(email=clean_data['email'], username = clean_data['username'], password= clean_data['password'])
         user_obj.save()
         return Response(status=status.HTTP_201_CREATED)
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'is_staff']

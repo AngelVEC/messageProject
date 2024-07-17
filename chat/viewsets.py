@@ -1,5 +1,7 @@
+from django.contrib.auth.models import User
+
 from chat.models import ChatRoom, Message
-from chat.serializers import ChatRoomSerializer,MessageSerializer
+from chat.serializers import ChatRoomSerializer, MessageSerializer, UserSerializer
 from rest_framework import viewsets, permissions
 from rest_framework.views import APIView
 from chat.serializers import userRegisterSerializer
@@ -20,3 +22,7 @@ class registerView(APIView) :
         serializer = userRegisterSerializer(data=clean_data)
 
         return serializer.create(clean_data)
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
