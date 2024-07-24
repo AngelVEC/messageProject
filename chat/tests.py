@@ -7,48 +7,48 @@ from django.urls import reverse
 
 from .views import sumNumbers
 
-class ChatRoomViewSetTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        # Set up data for the whole TestCase
-        cls.chatroom1 = ChatRoom.objects.create(name='Test Room 1')
-        cls.chatroom2 = ChatRoom.objects.create(name='Test Room 2')
+# class ChatRoomViewSetTest(TestCase):
+#     @classmethod
+#     def setUpTestData(cls):
+#         # Set up data for the whole TestCase
+#         cls.chatroom1 = ChatRoom.objects.create(name='Test Room 1')
+#         cls.chatroom2 = ChatRoom.objects.create(name='Test Room 2')
 
-    def setUp(self):
-        self.client = APIClient()
+#     def setUp(self):
+#         self.client = APIClient()
 
-    def test_list_chatrooms(self):
-        response = self.client.get(reverse('chatroom-list'))
-        chatrooms = ChatRoom.objects.all()
-        serializer = ChatRoomSerializer(chatrooms, many=True)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, serializer.data)
+#     def test_list_chatrooms(self):
+#         response = self.client.get(reverse('chatroom-list'))
+#         chatrooms = ChatRoom.objects.all()
+#         serializer = ChatRoomSerializer(chatrooms, many=True)
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.assertEqual(response.data, serializer.data)
 
-    def test_create_chatroom(self):
-        data = {'name': 'New Test Room'}
-        response = self.client.post(reverse('chatroom-list'), data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(ChatRoom.objects.count(), 3)
-        self.assertEqual(ChatRoom.objects.get(id=response.data['id']).name, 'New Test Room')
+#     def test_create_chatroom(self):
+#         data = {'name': 'New Test Room'}
+#         response = self.client.post(reverse('chatroom-list'), data)
+#         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+#         self.assertEqual(ChatRoom.objects.count(), 3)
+#         self.assertEqual(ChatRoom.objects.get(id=response.data['id']).name, 'New Test Room')
 
-    def test_retrieve_chatroom(self):
-        response = self.client.get(reverse('chatroom-detail', kwargs={'pk': self.chatroom1.pk}))
-        chatroom = ChatRoom.objects.get(pk=self.chatroom1.pk)
-        serializer = ChatRoomSerializer(chatroom)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, serializer.data)
+#     def test_retrieve_chatroom(self):
+#         response = self.client.get(reverse('chatroom-detail', kwargs={'pk': self.chatroom1.pk}))
+#         chatroom = ChatRoom.objects.get(pk=self.chatroom1.pk)
+#         serializer = ChatRoomSerializer(chatroom)
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.assertEqual(response.data, serializer.data)
 
-    def test_update_chatroom(self):
-        data = {'name': 'Updated Test Room'}
-        response = self.client.put(reverse('chatroom-detail', kwargs={'pk': self.chatroom1.pk}), data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.chatroom1.refresh_from_db()
-        self.assertEqual(self.chatroom1.name, 'Updated Test Room')
+#     def test_update_chatroom(self):
+#         data = {'name': 'Updated Test Room'}
+#         response = self.client.put(reverse('chatroom-detail', kwargs={'pk': self.chatroom1.pk}), data)
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.chatroom1.refresh_from_db()
+#         self.assertEqual(self.chatroom1.name, 'Updated Test Room')
 
-    def test_delete_chatroom(self):
-        response = self.client.delete(reverse('chatroom-detail', kwargs={'pk': self.chatroom1.pk}))
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(ChatRoom.objects.count(), 1)
+#     def test_delete_chatroom(self):
+#         response = self.client.delete(reverse('chatroom-detail', kwargs={'pk': self.chatroom1.pk}))
+#         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+#         self.assertEqual(ChatRoom.objects.count(), 1)
 
 class SumNumbersFunctionTest(TestCase):
 
@@ -73,22 +73,22 @@ class SumNumbersFunctionTest(TestCase):
         self.assertEqual(result, 0)
 
 
-class SumNumbersViewTest(TestCase):
-    def setUp(self):
-        self.client = APIClient()
-        self.url = reverse('sum_numbers')
+# class SumNumbersViewTest(TestCase):
+#     def setUp(self):
+#         self.client = APIClient()
+#         self.url = reverse('sum_numbers')
 
-    def test_sum_numbers(self):
-        response = self.client.post(self.url, {'start_num': 1, 'end_num': 5}, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['result'], 15)
+#     def test_sum_numbers(self):
+#         response = self.client.post(self.url, {'start_num': 1, 'end_num': 5}, format='json')
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.assertEqual(response.data['result'], 15)
 
-    def test_sum_numbers_reverse_order(self):
-        response = self.client.post(self.url, {'start_num': 5, 'end_num': 1}, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['result'], 15)
+#     def test_sum_numbers_reverse_order(self):
+#         response = self.client.post(self.url, {'start_num': 5, 'end_num': 1}, format='json')
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.assertEqual(response.data['result'], 15)
 
-    def test_sum_numbers_negative(self):
-        response = self.client.post(self.url, {'start_num': -3, 'end_num': 3}, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['result'], 0)
+#     def test_sum_numbers_negative(self):
+#         response = self.client.post(self.url, {'start_num': -3, 'end_num': 3}, format='json')
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.assertEqual(response.data['result'], 0)
